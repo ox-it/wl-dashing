@@ -9,3 +9,11 @@ To run:
 
 dashing start
 
+
+Ideas:
+
+RT Tickets - Open Today, Closed Today
+status.ox.ac.uk - Parse WebLearn Status.
+github commits today - Github API
+jira issues closed - Jira API
+jenkins build status
