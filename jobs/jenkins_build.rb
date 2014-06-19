@@ -5,7 +5,7 @@ require 'time'
 JENKINS_URI = URI.parse("http://jenkins.oucs.ox.ac.uk:443")
 
 JENKINS_AUTH = {
-  'name' => 'dashing',
+  'name'     => ENV['DASHING_JENKINS_USER'],
   'password' => ENV['DASHING_JENKINS_PASS']
 }
 
