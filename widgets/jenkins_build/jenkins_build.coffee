@@ -15,13 +15,19 @@ class Dashing.JenkinsBuild extends Dashing.Widget
     super
     @observe 'value', (value) ->
       $(@node).find(".jenkins-build").val(value).trigger('change')
+    @observe 'duration', (time) ->
+      $(@node).find(".jenkins-build").attr('data-duration', time)
 
   ready: ->
     meter = $(@node).find(".jenkins-build")
     $(@node).fadeOut().css('background-color', @get('bgColor')).fadeIn()
     meter.attr("data-bgcolor", meter.css("background-color"))
     meter.attr("data-fgcolor", meter.css("color"))
-    meter.knob()
+    meter.knob
+      format: (v) -> 
+        duration = meter.attr('data-duration')
+        if duration
+          duration + 's'
 
   onData: (data) ->
     if data.currentResult isnt data.lastResult

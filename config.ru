@@ -4,10 +4,9 @@ require 'securerandom'
 configure do
   set :auth_token, ENV.fetch('AUTH_TOKEN') { SecureRandom.uuid }
 
-  unless ENV['DASHING_FORCE_SSL'].nil?
-    set :force_ssl, true
-    set :host, ENV['DASHING_HOST']
-  end
+  force_ssl = !!ENV['DASHING_FORCE_SSL']
+  set :force_ssl, force_ssl
+  set :host, ENV['DASHING_HOST'] if force_ssl
 
   helpers do
     def protected!
