@@ -16,7 +16,17 @@ To define a dashing service on boot, update the variables in `dashboard` and the
     sudo chmod 755 /etc/init.d/dashboard
     sudo update-rc.d dashboard defaults
 
-Ideas:
+## Enviornment variables
+
+The following environment variables should be set for it to run smoothly
+
+    DASHING_JENKINS_USER
+    DASHING_JENKINS_PASS
+    DASHING_FORCE_SSL
+    DASHING_HOST
+    AUTH_TOKEN
+
+## Ideas
 
 * RT Tickets - Open Today, Closed Today
 * status.ox.ac.uk - Parse WebLearn Status.
