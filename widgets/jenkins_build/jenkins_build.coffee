@@ -28,6 +28,7 @@ class Dashing.JenkinsBuild extends Dashing.Widget
     meter.attr("data-bgcolor", meter.css("background-color"))
     meter.attr("data-fgcolor", meter.css("color"))
     if @get('building')
+      $(@node).find(".last-built").hide()
       meter.show()
       meter.knob
         format: (v) ->
@@ -35,6 +36,7 @@ class Dashing.JenkinsBuild extends Dashing.Widget
           if duration
             duration + 's'
     else
+      $(@node).find(".last-built").show()
       meter.hide()
 
   onData: (data) ->

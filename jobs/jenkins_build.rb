@@ -73,7 +73,7 @@ job_mapping.each do |title, jenkins_project|
     send_event(title, {
       currentResult: current_status,
       lastResult: last_status,
-      timestamp: build_info["timestamp"],
+      lastBuilt: Time.at(build_info["timestamp"] / 1000).to_pretty,
       value: percent,
       duration: duration
     })
