@@ -6,6 +6,8 @@ class Dashing.JenkinsBuild extends Dashing.Widget
       "#96bf48"
     else if @get('currentResult') == "FAILURE"
       "#D26771"
+    else if @get('currentResult') == "UNSTABLE"
+      "#F9A318"
     else if @get('currentResult') == "PREBUILD"
       "#ff9618"
     else
