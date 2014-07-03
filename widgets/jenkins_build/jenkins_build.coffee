@@ -12,6 +12,8 @@ class Dashing.JenkinsBuild extends Dashing.Widget
       "#ff9618"
     else
       "#999"
+  @accessor 'building', ->
+    @get('currentResult') == "BUILDING"
 
   constructor: ->
     super
@@ -25,11 +27,15 @@ class Dashing.JenkinsBuild extends Dashing.Widget
     $(@node).fadeOut().css('background-color', @get('bgColor')).fadeIn()
     meter.attr("data-bgcolor", meter.css("background-color"))
     meter.attr("data-fgcolor", meter.css("color"))
-    meter.knob
-      format: (v) -> 
-        duration = meter.attr('data-duration')
-        if duration
-          duration + 's'
+    if @get('building')
+      meter.show()
+      meter.knob
+        format: (v) ->
+          duration = meter.attr('data-duration')
+          if duration
+            duration + 's'
+    else
+      meter.hide()
 
   onData: (data) ->
     if data.currentResult isnt data.lastResult
