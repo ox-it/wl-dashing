@@ -33,3 +33,5 @@ The following environment variables should be set for it to run smoothly
 * github commits today - Github API
 * jira issues closed - Jira API
 * jenkins build status
+
+ echo "{ \"auth_token\": \"YOUR_AUTH_TOKEN\", \"data\": $(curl http://status.ox.ac.uk/api/services.json) }" |curl -d @- http://localhost:3030/widgets/status
