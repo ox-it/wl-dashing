@@ -39,9 +39,8 @@ def get_completion_duration(job_name)
   duration = (Time.now.to_f - build_info["timestamp"] / 1000).round(0)
 end
 
-def get_last_succ_build(job_name)
-  last_succ_build_info = get_json_for_job(job_name, 'lastSuccessfulBuild')
-  return '#' + last_succ_build_info["number"].to_s
+def get_last_successful_build_number(job_name)
+  get_json_for_job(job_name, 'lastSuccessfulBuild')['number']
 end
 
 def get_json_for_job(job_name, build = 'lastBuild')
@@ -68,7 +67,7 @@ job_mapping.each do |title, jenkins_project|
 
     last_status = current_status
     current_status = build_info["result"]
-    last_succ_build = get_last_succ_build(job)
+    last_succ_build = get_last_successful_build_number(job)
 
     if build_info["building"]
       current_status = "BUILDING"
