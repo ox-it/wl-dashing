@@ -11,8 +11,6 @@ JENKINS_AUTH = {
 
 # the key of this mapping must be a unique identifier for your job, the according value must be the name that is specified in jenkins
 job_mapping = {
-  '2.8'     => { :job => 'oxford-sakai-2.8.x'},
-  '2.8-run' => { :job => 'oxford-sakai-run'},
   '10'      => { :job => 'oxford-sakai-10'},
   '10-run'  => { :job => 'oxford-sakai-10-run'}
 }
