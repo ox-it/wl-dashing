@@ -39,6 +39,7 @@ class Dashing.JenkinsBuild extends Dashing.Widget
       $(@node).find(".last-built").show()
       meter.hide()
 
+      
   onData: (data) ->
     if data.currentResult isnt data.lastResult
       $(@node).fadeOut().css('background-color', @get('bgColor')).fadeIn()
