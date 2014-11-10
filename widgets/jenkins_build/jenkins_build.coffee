@@ -6,10 +6,14 @@ class Dashing.JenkinsBuild extends Dashing.Widget
       "#96bf48"
     else if @get('currentResult') == "FAILURE"
       "#D26771"
+    else if @get('currentResult') == "UNSTABLE"
+      "#F9A318"
     else if @get('currentResult') == "PREBUILD"
       "#ff9618"
     else
       "#999"
+  @accessor 'building', ->
+    @get('currentResult') == "BUILDING"
 
   constructor: ->
     super
@@ -23,12 +27,19 @@ class Dashing.JenkinsBuild extends Dashing.Widget
     $(@node).fadeOut().css('background-color', @get('bgColor')).fadeIn()
     meter.attr("data-bgcolor", meter.css("background-color"))
     meter.attr("data-fgcolor", meter.css("color"))
-    meter.knob
-      format: (v) -> 
-        duration = meter.attr('data-duration')
-        if duration
-          duration + 's'
+    if @get('building')
+      $(@node).find(".last-built").hide()
+      meter.show()
+      meter.knob
+        format: (v) ->
+          duration = meter.attr('data-duration')
+          if duration
+            duration + 's'
+    else
+      $(@node).find(".last-built").show()
+      meter.hide()
 
+      
   onData: (data) ->
     if data.currentResult isnt data.lastResult
       $(@node).fadeOut().css('background-color', @get('bgColor')).fadeIn()

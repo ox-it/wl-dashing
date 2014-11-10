@@ -11,8 +11,6 @@ JENKINS_AUTH = {
 
 # the key of this mapping must be a unique identifier for your job, the according value must be the name that is specified in jenkins
 job_mapping = {
-  '2.8'     => { :job => 'oxford-sakai-2.8.x'},
-  '2.8-run' => { :job => 'oxford-sakai-run'},
   '10'      => { :job => 'oxford-sakai-10'},
   '10-run'  => { :job => 'oxford-sakai-10-run'}
 }
@@ -39,6 +37,10 @@ def get_completion_duration(job_name)
   duration = (Time.now.to_f - build_info["timestamp"] / 1000).round(0)
 end
 
+def get_last_successful_build_number(job_name)
+  get_json_for_job(job_name, 'lastSuccessfulBuild')['number']
+end
+
 def get_json_for_job(job_name, build = 'lastBuild')
   job_name = URI.encode(job_name)
 
@@ -63,6 +65,7 @@ job_mapping.each do |title, jenkins_project|
 
     last_status = current_status
     current_status = build_info["result"]
+    last_succ_build = get_last_successful_build_number(job)
 
     if build_info["building"]
       current_status = "BUILDING"
@@ -73,7 +76,8 @@ job_mapping.each do |title, jenkins_project|
     send_event(title, {
       currentResult: current_status,
       lastResult: last_status,
-      timestamp: build_info["timestamp"],
+      lastSuccBuild: last_succ_build,
+      lastBuilt: Time.at(build_info["timestamp"] / 1000).to_pretty,
       value: percent,
       duration: duration
     })
