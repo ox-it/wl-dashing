@@ -34,4 +34,10 @@ The following environment variables should be set for it to run smoothly
 * jira issues closed - Jira API
 * jenkins build status
 
- echo "{ \"auth_token\": \"YOUR_AUTH_TOKEN\", \"data\": $(curl http://status.ox.ac.uk/api/services.json) }" |curl -d @- http://localhost:3030/widgets/status
+## status.ox.ac.uk tinkering
+
+The widget polls status.ox.ac.uk every 30 seconds for updates, but to test layout and colour you can manually send some data with:
+
+echo '{ "auth_token": "YOUR_AUTH_TOKEN", "data": { "groups": [ {"id": "weblearn", "status_name": "Down"} ] } }' |curl -d @- http://localhost:3030/widgets/status
+
+It would be better if the data was parsed(serverside) so we knew how long is had been at a particular status.
