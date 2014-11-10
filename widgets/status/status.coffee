@@ -11,10 +11,12 @@ class Dashing.Status extends Dashing.Widget
     else if @get('status') == "Partial"
       "#d9a318"
     else if @get('status') == "Down"
-      "#D26771"
+      "#d26771"
     else
       "#999"
 
   onData: (data) ->
-    if $(@node).css('background-color') isnt @get('bgColor')
+    # Cache the status inside the widget
+    if @lastStatus isnt @get('status')
       $(@node).fadeOut().css('background-color', @get('bgColor')).fadeIn();
+    @lastStatus = @get('status')
