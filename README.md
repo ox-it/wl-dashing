@@ -41,3 +41,10 @@ The widget polls status.ox.ac.uk every 30 seconds for updates, but to test layou
 echo '{ "auth_token": "YOUR_AUTH_TOKEN", "data": { "groups": [ {"id": "weblearn", "status_name": "Down"} ] } }' |curl -d @- http://localhost:3030/widgets/status
 
 It would be better if the data was parsed(serverside) so we knew how long is had been at a particular status.
+
+## AFS Quota
+
+The AFS quota widget is updated by a script run through cron that checks the quota usage and posts the data off.
+To mock this use something like:
+
+curl -d "{ \"auth_token\": \"YOUR_AUTH_TOKEN\", \"current\": \"80\" }" http://localhost:3030/widgets/quota.afs
