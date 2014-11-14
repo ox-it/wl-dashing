@@ -8,6 +8,9 @@
 $background-color: #222;
 $text-color: #fff;
 
+$background-good-color: rgb(150, 191, 72);
+$text-good-color: #fff;
+
 $background-warning-color-1: #e82711;
 $background-warning-color-2: #9b2d23;
 $text-warning-color: #fff;
@@ -174,6 +177,19 @@ h3 {
 
   .title, .more-info {
     color: $text-danger-color;
+  }
+}
+
+.widget.status-good {
+  color: $text-good-color;
+  background-color: $background-good-color;
+
+  .icon-warning-sign {
+    display: inline-block;
+  }
+
+  .title, .more-info {
+    color: $text-good-color;
   }
 }
 
