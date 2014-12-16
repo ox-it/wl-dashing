@@ -2,7 +2,7 @@ require 'net/http'
 require 'json'
 require 'time'
 
-JENKINS_URI = URI.parse("http://jenkins.oucs.ox.ac.uk:443")
+JENKINS_URI = URI.parse("https://jenkins.oucs.ox.ac.uk")
 
 JENKINS_AUTH = {
   'name'     => ENV['DASHING_JENKINS_USER'],
@@ -12,7 +12,7 @@ JENKINS_AUTH = {
 # the key of this mapping must be a unique identifier for your job, the according value must be the name that is specified in jenkins
 job_mapping = {
   '10'      => { :job => 'oxford-sakai-10'},
-  '10-run'  => { :job => 'oxford-sakai-10-run'}
+  '10-run'  => { :job => 'oxford-sakai-10-docker'}
 }
 
 def get_number_of_failing_tests(job_name)
