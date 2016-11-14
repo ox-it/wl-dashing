@@ -4,6 +4,7 @@ require 'mechanize'
 
 WEBLEARN_HOMEPAGE = 'https://weblearn.ox.ac.uk/portal'
 WEBLEARN_LOGIN_ACTION = 'https://weblearn.ox.ac.uk/portal/relogin'
+WEBLEARN_LOGOUT_ACTION = 'https://weblearn.ox.ac.uk/portal/logout'
 COURSE_GROUPS_JSON_URL = 'https://weblearn.ox.ac.uk/external-groups/rest/group/browse/?id=courses'
 COURSE_GROUPS_AUTH = {
     'name'     => ENV['DASHING_JENKINS_USER'],
@@ -33,6 +34,9 @@ def getrespcode()
     rescue Mechanize::ResponseCodeError => exception
       return exception.response_code;
     end
+
+    # Logout
+    logout_page = a.get(WEBLEARN_LOGOUT_ACTION)
   end
 end
 
