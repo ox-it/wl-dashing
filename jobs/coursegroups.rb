@@ -20,23 +20,23 @@ def getrespcode()
     login_page = a.click(page.link_with(:id => 'loginLink2'))
 
     # Submit login form
-    # my_page = login_page.form_with(:action => WEBLEARN_LOGIN_ACTION) do |f|
-    #   username_field = f.field_with(:id => 'eid')
-    #   username_field.value = COURSE_GROUPS_AUTH['name']
-    #   password_field = f.field_with(:id => 'pw')
-    #   password_field.value = COURSE_GROUPS_AUTH['password']
-    # end.click_button
-    #
-    # # Check response code from course groups json
-    # begin
-    #   page = a.head(COURSE_GROUPS_JSON_URL)
-    #   return page.code;
-    # rescue Mechanize::ResponseCodeError => exception
-    #   return exception.response_code;
-    # end
-    #
-    # # Logout
-    # logout_page = a.get(WEBLEARN_LOGOUT_ACTION)
+    my_page = login_page.form_with(:action => WEBLEARN_LOGIN_ACTION) do |f|
+      username_field = f.field_with(:id => 'eid')
+      username_field.value = COURSE_GROUPS_AUTH['name']
+      password_field = f.field_with(:id => 'pw')
+      password_field.value = COURSE_GROUPS_AUTH['password']
+    end.click_button
+
+    # Check response code from course groups json
+    begin
+      page = a.head(COURSE_GROUPS_JSON_URL)
+      return page.code;
+    rescue Mechanize::ResponseCodeError => exception
+      return exception.response_code;
+    end
+
+    # Logout
+    logout_page = a.get(WEBLEARN_LOGOUT_ACTION)
   end
 end
 
