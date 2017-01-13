@@ -30,13 +30,14 @@ def getrespcode()
     # Check response code from course groups json
     begin
       page = a.head(COURSE_GROUPS_JSON_URL)
-      return page.code;
+      code = page.code;
+      logout_page = a.click(page.link_with(:id => 'loginLink1'))
+      return code;
     rescue Mechanize::ResponseCodeError => exception
-      return exception.response_code;
+      code = exception.response_code;
+      logout_page = a.click(page.link_with(:id => 'loginLink1'))
+      return code;
     end
-
-    # Logout
-    logout_page = a.get(WEBLEARN_LOGOUT_ACTION)
   end
 end
 
