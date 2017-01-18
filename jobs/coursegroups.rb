@@ -29,8 +29,8 @@ def getrespcode()
 
     # Check response code from course groups json
     begin
-      page = a.head(COURSE_GROUPS_JSON_URL)
-      code = page.code;
+      coursePage = a.head(COURSE_GROUPS_JSON_URL)
+      code = coursePage.code;
       logout_page = a.click(page.link_with(:id => 'loginLink1'))
       return code;
     rescue Mechanize::ResponseCodeError => exception
