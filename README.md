@@ -1,3 +1,5 @@
+This repository is no longer used and is just preserved for reference purposes.
+
 Check out http://shopify.github.com/dashing for more information.
 
 Install stuff
